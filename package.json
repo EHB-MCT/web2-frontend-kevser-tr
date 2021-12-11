@@ -1,0 +1,25 @@
+{
+  "name": "web2-frontend-kevser-tr",
+  "version": "1.0.0",
+  "description": "webcourseproject ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EHB-MCT/web2-frontend-kevser-tr.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EHB-MCT/web2-frontend-kevser-tr/issues"
+  },
+  "homepage": "https://github.com/EHB-MCT/web2-frontend-kevser-tr#readme",
+  "dependencies": {
+    "chart.js": "^3.6.2",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
+  }
+}

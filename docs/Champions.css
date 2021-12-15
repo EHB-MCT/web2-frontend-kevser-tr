@@ -1,0 +1,23 @@
+main{
+    margin-left: 90px;
+  
+}
+.champions,.options{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+.champions .champ{
+    width: 150px;
+    margin: 10px;
+}
+.champions .champ img{
+    width: 100%;
+    transition: all 0.5s;
+}
+.champions .champ img:hover{
+    box-shadow: 0 0 0 2px #C8AA6E;
+    transform: scale(0.99);
+}

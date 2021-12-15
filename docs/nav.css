@@ -1,0 +1,76 @@
+body {
+    background-color: #00101C;
+}
+
+header {
+    position: fixed;
+    z-index: 1;
+    width: 90px;
+    height: 100%;
+    background-image: url(/img/nav.jpg);
+    list-style: none;
+
+}
+
+.logo {
+    position: absolute;
+    top: 2%;
+    width: 50%;
+    transform: translate(-50%, 50%);
+    left: 50%;
+}
+
+.menu {
+    position: absolute;
+    bottom: 50%;
+    width: 100%;
+    transform: translate(-50%, 50%);
+    left: 50%;
+}
+
+.menu li, .profile li {
+    width: 30px;
+    margin: auto;
+    padding: 15px 0; 
+}
+.hover{
+    position: relative;
+}
+.hover:hover{
+    background-color: rgb(23, 60, 109,0.4);  
+}
+.hover:hover .hiddenName{
+    visibility: visible;
+    opacity: 1;
+}
+.active {
+    background-image: linear-gradient(to left, transparent, rgb(23, 60, 109));  
+}
+.hiddenName{
+    position: absolute;
+    background-color: black;
+    padding: 5px 10px;
+    top: 50%;
+    transform: translate(0%, -50%);
+    right: -120%;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.5s;
+ 
+}
+.hiddenName{
+    color: white;
+}
+
+.img-picto img {
+    width: 100%;
+}
+
+.profile {
+    position: absolute;
+    bottom: 5%;
+    width: 100%;
+    transform: translate(-50%, 50%);
+    left: 50%;
+}
+

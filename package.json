@@ -19,6 +19,7 @@
   "homepage": "https://github.com/EHB-MCT/web2-frontend-kevser-tr#readme",
   "dependencies": {
     "chart.js": "^3.6.2",
+    "express": "^4.17.1",
     "webpack": "^5.65.0",
     "webpack-cli": "^4.9.1"
   }

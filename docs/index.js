@@ -3,7 +3,9 @@
 const championApp = {
     initFields() {
         this.extraData();
-        this.getChampions();
+        // this.getChampions();
+        this.Champions();
+
         // let navbar = document.querySelector(".menu").querySelectorAll(".hover");
         // navbar.forEach(element=>{
         //     element.addEventListener("click", function(){
@@ -13,22 +15,34 @@ const championApp = {
         // });
 
     },
-
-    getChampions(){
-        let championSection = document.querySelector(".champions");
-        fetch('http://ddragon.leagueoflegends.com/cdn/11.24.1/data/en_US/champion.json')
-        .then(response => {
-            return response.json();
-        })
-        .then(champs =>{
-            console.log(champs)
-            for(let champ in champs.data){
-                console.log(champ)
-                championSection.insertAdjacentHTML("beforeend", `<div class="champ"><img src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champ}_0.jpg" alt"champ image></div>`)
-            }
-           
-        })
+    async getChampions() {
+        let response = await fetch('http://ddragon.leagueoflegends.com/cdn/11.24.1/data/en_US/champion.json');
+        return await response.json();
     },
+
+    async Champions() {
+        let championSection = document.querySelector(".champions");
+        let champions = await this.getChampions();
+        console.log(champions);
+        for (let champ in champions.data) {
+            console.log(champ)
+            championSection.insertAdjacentHTML("beforeend", `<div class="champ"><img src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champ}_0.jpg" alt"champ image></div>`)
+        }
+        // champions.forEach(champion => {
+        //         console.log(champion);
+        //     )
+        // }
+
+        // .then(champs => {
+        //     console.log(champs)
+        //     for (let champ in champs.data) {
+        //         console.log(champ)
+        // championSection.insertAdjacentHTML("beforeend", `<div class="champ"><img src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champ}_0.jpg" alt"champ image></div>`)
+        //     }
+
+        // })
+    },
+
 
     extraData() {
         let roles = document.querySelectorAll(".role");
@@ -36,7 +50,6 @@ const championApp = {
         roles.forEach(element => {
             element.addEventListener("click", function (e) {
                 e.preventDefault();
-
                 clickedRole = element.querySelector(".hulpwoord").innerHTML;
 
                 fetch(`extraData.json`)
@@ -69,12 +82,12 @@ const championApp = {
                                                 let slides = document.querySelectorAll(".slide");
                                                 for (let slide of slides) {
                                                     let randomChamp = Math.floor(Math.random() * i.length);
-                                                    slide.addEventListener("click",function(){
+                                                    slide.addEventListener("click", function () {
                                                         document.querySelector("#slider>p").innerHTML = i[randomChamp];
                                                     })
-                                                    
+
                                                     slide.src = `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${i[randomChamp]}_0.jpg`;
-                                                   
+
                                                 }
 
 

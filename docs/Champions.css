@@ -1,23 +1,79 @@
-main{
-    margin-left: 90px;
-  
+@font-face {
+    font-family: LeagueFont;
+    src: url(sources/font/BeaufortforLOL-Bold.woff.ttf);
 }
-.champions,.options{
-    width: 90%;
-    margin: auto;
+
+@font-face {
+    font-family: LeagueText;
+    src: url(sources/font/msjh_0.ttf);
+}
+
+main {
+    margin-left: 119px;
+    padding: 83px 0;
+
+}
+
+main>h1 {
+    font-family: LeagueFont;
+    font-size: 50px;
+
+    color: #C8AA6E;
+}
+
+.search {
+    width: 100%;
+    font-family: LeagueText;
+    padding: 10px 0;
+    color: #F1F1E6;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 15px;
+}
+
+.roles {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    display: flex;
+    width: 100%;
+}
+
+.role {
+    width: 100px;
+    text-align: -webkit-center;
+    padding-bottom: 30px;
+}
+
+.role>img {
+    width: 40%;
+    padding: 0 10px;
+
+}
+
+.role>h1 {
+    font-family: leaguefont;
+
+    color: #C8AA6E;
+}
+
+.champions,
+.options {
+    width: 700px;
     display: flex;
     flex-wrap: wrap;
-    
 }
-.champions .champ{
+
+.champions .champ {
     width: 150px;
     margin: 10px;
 }
-.champions .champ img{
+
+.champions .champ img {
     width: 100%;
     transition: all 0.5s;
 }
-.champions .champ img:hover{
+
+.champions .champ img:hover {
     box-shadow: 0 0 0 2px #C8AA6E;
     transform: scale(0.99);
 }

@@ -1,5 +1,7 @@
 "use strict";
 
+
+
 const championApp = {
     initFields() {
         this.extraData();
@@ -19,30 +21,32 @@ const championApp = {
         let response = await fetch('http://ddragon.leagueoflegends.com/cdn/11.24.1/data/en_US/champion.json');
         return await response.json();
     },
-
     async Champions() {
         let championSection = document.querySelector(".champions");
         let champions = await this.getChampions();
         console.log(champions);
         for (let champ in champions.data) {
-            console.log(champ)
-            championSection.insertAdjacentHTML("beforeend", `<div class="champ"><img src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champ}_0.jpg" alt"champ image></div>`)
+            // console.log(champ);
+            championSection.insertAdjacentHTML("beforeend", `<div class="champ"><img src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champ}_0.jpg" alt"champ image></div>`);
         }
-        // champions.forEach(champion => {
-        //         console.log(champion);
-        //     )
-        // }
 
-        // .then(champs => {
-        //     console.log(champs)
-        //     for (let champ in champs.data) {
-        //         console.log(champ)
-        // championSection.insertAdjacentHTML("beforeend", `<div class="champ"><img src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champ}_0.jpg" alt"champ image></div>`)
-        //     }
+        const filters = document.querySelectorAll('.cat');
+        filters.forEach(filterButton => {
+            filterButton.addEventListener("click", function () {
+                let clickedCat = filterButton.id;
+                championSection.innerHTML = "";
+                for (let champ in champions.data) {
+                    for (let i = 0; i < champions.data[champ].tags.length; i++) {
+                        console.log(champions.data[champ].tags[i])
+                        if(clickedCat == champions.data[champ].tags[i]){
+                            championSection.insertAdjacentHTML("beforeend", `<div class="champ"><img src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champ}_0.jpg" alt"champ image></div>`);
+                        }
+                    }
+                }
 
-        // })
+            })
+        })
     },
-
 
     extraData() {
         let roles = document.querySelectorAll(".role");

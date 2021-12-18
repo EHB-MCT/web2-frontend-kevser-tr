@@ -7,7 +7,7 @@ header {
     z-index: 1;
     width: 90px;
     height: 100%;
-    background-image: url(/img/nav.jpg);
+    background-image: url(/docs/img/nav.jpg);
     list-style: none;
 
 }
@@ -28,25 +28,31 @@ header {
     left: 50%;
 }
 
-.menu li, .profile li {
+.menu li,
+.profile li {
     width: 30px;
     margin: auto;
-    padding: 15px 0; 
+    padding: 15px 0;
 }
-.hover{
+
+.hover {
     position: relative;
 }
-.hover:hover{
-    background-color: rgb(23, 60, 109,0.4);  
+
+.hover:hover {
+    background-color: rgb(23, 60, 109, 0.4);
 }
-.hover:hover .hiddenName{
+
+.hover:hover .hiddenName {
     visibility: visible;
     opacity: 1;
 }
+
 .active {
-    background-image: linear-gradient(to left, transparent, rgb(23, 60, 109));  
+    background-image: linear-gradient(to left, transparent, rgb(23, 60, 109));
 }
-.hiddenName{
+
+.hiddenName {
     position: absolute;
     background-color: black;
     padding: 5px 10px;
@@ -56,9 +62,10 @@ header {
     visibility: hidden;
     opacity: 0;
     transition: all 0.5s;
- 
+
 }
-.hiddenName{
+
+.hiddenName {
     color: white;
 }
 
@@ -73,4 +80,3 @@ header {
     transform: translate(-50%, 50%);
     left: 50%;
 }
-

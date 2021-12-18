@@ -10,11 +10,16 @@
 
 main {
     margin-left: 119px;
-    padding: 83px 0;
+    z-index: 99;
+    padding: 50px 0;
+    display: flex;
+    position: absolute;
+    justify-content: space-between;
+    flex-wrap: wrap;
 
 }
 
-main>h1 {
+.options>h1 {
     font-family: LeagueFont;
     font-size: 50px;
 
@@ -33,15 +38,15 @@ main>h1 {
 
 .roles {
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
     display: flex;
-    width: 100%;
+    width: 95%;
 }
 
 .cat {
     width: 100px;
     text-align: -webkit-center;
-    padding: 30px 0;
+    padding: 30px 0 20px 0;
 }
 
 .cat>img {
@@ -51,9 +56,13 @@ main>h1 {
 }
 
 .cat>h1 {
-    font-family: leaguefont;
-
+    font-family: LeagueFont;
     color: #C8AA6E;
+}
+
+.catActive {
+    box-shadow: inset 0 -5px 0 #C8AA6E;
+    margin-bottom: 10px;
 }
 
 .champions,
@@ -63,7 +72,23 @@ main>h1 {
     flex-wrap: wrap;
 }
 
+.champions {
+    overflow-y: scroll;
+    height: 550px;
+}
+
+.champions::-webkit-scrollbar {
+    background-color: #011525;
+    width: 0.1em;
+}
+
+.champions::-webkit-scrollbar-thumb {
+    background-color: #C8AA6E;
+}
+
 .champions .champ {
+    position: relative;
+    transition: all 0.5s;
     width: 150px;
     margin: 10px;
 }
@@ -73,7 +98,185 @@ main>h1 {
     transition: all 0.5s;
 }
 
-.champions .champ img:hover {
+.champions .champ p {
+    position: absolute;
+    opacity: 0;
+    top: 75%;
+    transition: all 0.5s;
+    background-color: #031625;
+    padding: 10px 30px;
+    color: white;
+    font-family: 'LeagueFont';
+    font-size: 15px;
+    border: 2px solid #C8AA6E;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.champions .champ:hover img+p {
+    opacity: 1;
+}
+
+.champions .champ:hover {
     box-shadow: 0 0 0 2px #C8AA6E;
     transform: scale(0.99);
+}
+
+.bio {
+    width: 50%;
+    margin: auto;
+    display: flex;
+}
+
+.bio>div {
+    position: relative;
+}
+
+/* https://www.foolishdeveloper.com/2021/09/3d-image-slider-with-carousel-using.html */
+#slider {
+    position: absolute;
+    bottom: 5%;
+    width: 32%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    perspective: 1400px;
+    transform-style: preserve-3d;
+}
+
+input[type=radio] {
+    opacity: 0;
+}
+
+
+input[type=radio]:nth-child(5) {
+    margin-right: 0px;
+}
+
+input[type=radio]:checked {
+    opacity: 0;
+}
+
+
+
+
+#slider label,
+#slider label img {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    color: #C8AA6E;
+    font-size: 70px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 10px 10px 5px #000;
+    z-index: -1;
+    transition: transform 400ms ease;
+}
+
+.bio>div>p {
+    position: absolute;
+    left: 50%;
+    bottom: 12%;
+    font-family: LeagueFond;
+
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 20px;
+}
+
+
+
+/* Slider Functionality */
+
+/* Active Slide */
+#s1:checked~#slide1,
+#s2:checked~#slide2,
+#s3:checked~#slide3,
+#s4:checked~#slide4,
+#s5:checked~#slide5 {
+    box-shadow: 0 13px 26px rgba(0, 0, 0, 0.3), 0 12px 6px rgba(0, 0, 0, 0.2);
+    transform: translate3d(0%, 0, 0px);
+}
+
+/* Next Slide */
+#s1:checked~#slide2,
+#s2:checked~#slide3,
+#s3:checked~#slide4,
+#s4:checked~#slide5,
+#s5:checked~#slide1 {
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3), 0 2px 2px rgba(0, 0, 0, 0.2);
+    transform: translate3d(60%, 0, -100px);
+}
+
+
+/* Next to Next Slide */
+#s1:checked~#slide3,
+#s2:checked~#slide4,
+#s3:checked~#slide5,
+#s4:checked~#slide1,
+#s5:checked~#slide2 {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    transform: translate3d(120%, 0, -250px);
+}
+
+/* Previous to Previous Slide */
+#s1:checked~#slide4,
+#s2:checked~#slide5,
+#s3:checked~#slide1,
+#s4:checked~#slide2,
+#s5:checked~#slide3 {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    transform: translate3d(-120%, 0, -250px);
+}
+
+/* Previous Slide */
+#s1:checked~#slide5,
+#s2:checked~#slide1,
+#s3:checked~#slide2,
+#s4:checked~#slide3,
+#s5:checked~#slide4 {
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3), 0 2px 2px rgba(0, 0, 0, 0.2);
+    transform: translate3d(-60%, 0, -100px);
+}
+
+.bio article {
+    padding: 0 30px;
+    line-height: 1.2;
+}
+
+.bio h1 {
+    font-family: LeagueFont;
+    font-size: 2em;
+    color: #C8AA6E;
+}
+
+.bio h2 {
+    font-family: LeagueFont;
+    color: #C8AA6E;
+}
+
+.bio p {
+    color: white;
+    padding: 10px 0;
+    font-family: LeagueText;
+}
+
+.abilityActive {
+    border: 2px solid #C8AA6E;
+}
+
+.abilities {
+    margin-top: 20px;
+}
+
+.backgroundImg {
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    opacity: 0.1;
+    z-index: -999;
 }

@@ -1,8 +1,12 @@
+// import Team from "./team";
+
+
 const teambuilderApp = {
     initFields() {
         this.getChampions();
         this.Champions();
         this.FilterButton();
+
 
     },
     async getChampions() {
@@ -18,6 +22,7 @@ const teambuilderApp = {
             championSection.insertAdjacentHTML("beforeend", `<div class="champ"><img src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champ}_0.jpg" alt"champ image><p>${champ}</p></div>`);
         }
         teambuilderApp.teamBuilderChampionClick();
+        teambuilderApp.teamBuilderCal();
 
     },
 
@@ -40,6 +45,9 @@ const teambuilderApp = {
                     }
                 }
                 teambuilderApp.teamBuilderChampionClick();
+                teambuilderApp.teamBuilderCal();
+
+
             })
 
         })
@@ -71,7 +79,7 @@ const teambuilderApp = {
                         <p>magic damage: ${data.data[champName].stats.mp}</p>
                         <p>movement speed: ${data.data[champName].stats.movespeed}</p>
                         </div>
-                        <button>GENERATE TEAM</button>
+                        <button id="button">Genearate Team</button>
                         </article>
                
                         </div>`;
@@ -80,6 +88,31 @@ const teambuilderApp = {
                     })
             })
         }
+
+
     },
+    async teamBuilderCal() {
+
+        fetch('team.json')
+            .then(response => {
+                return response.json();
+            })
+            .then(obj => {
+                let ADdamage = obj.team.AD
+                let APdamage = obj.team.AP
+                let members = obj.team.teammembers
+                console.log(ADdamage, APdamage, members);
+            })
+
+        let champions = await this.getChampions();
+        for (let champ in champions.data) {
+            console.log(champ);
+            let ADdamage = champ[1].stats;
+            console.log(ADdamage)
+        }
+    }
+
+
+
 }
 teambuilderApp.initFields();

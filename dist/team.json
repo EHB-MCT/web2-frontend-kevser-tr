@@ -1,0 +1,8 @@
+{
+    "team": {
+        "teammembers": ["top", "mid", "jung", "adc", "sup"],
+        "AP": 0,
+        "AD": "lol",
+        "teamDmg": 0
+    }
+}

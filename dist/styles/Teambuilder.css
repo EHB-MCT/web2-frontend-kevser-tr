@@ -1,0 +1,64 @@
+@font-face {
+    font-family: LeagueFont;
+    src: url(./font/BeaufortforLOL-Bold.woff.ttf);
+}
+
+@font-face {
+    font-family: LeagueText;
+    src: url(./font/msjh_0.ttf);
+}
+
+body {
+    width: 100%;
+}
+
+.display {
+    display: flex;
+    padding: 33px 15px;
+}
+
+.generate {
+    height: 409px;
+    padding-left: 34px;
+    margin: auto;
+}
+
+.bio {
+    padding-left: 30px;
+}
+
+article>.title,
+.bioTitle,
+h2 {
+    font-family: 'LeagueFont';
+    font-size: 35px;
+    padding: 5px 0;
+    color: #C8AA6E;
+    padding: 10px 0;
+}
+
+h2 {
+    font-family: 'LeagueFont';
+    font-size: 20px;
+}
+
+.stats {
+    color: white;
+    padding: 5px 0;
+    line-height: 1.5;
+    font-family: 'LeagueText';
+}
+
+.charh {
+    padding-left: 30px;
+}
+
+button {
+    margin-top: 110px;
+    color: white;
+    font-size: 15px;
+    border: 2px solid #C8AA6E;
+    font-family: 'LeagueFont';
+    background-color: #031625;
+    padding: 10px 10px;
+}

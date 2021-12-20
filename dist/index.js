@@ -1,4 +1,5 @@
 "use strict";
+
 const championApp = {
     initFields() {
         this.extraData();
@@ -49,16 +50,12 @@ const championApp = {
 
     },
 
-    async zoekFunctie() {
 
-    },
 
     async ChampionClick() {
-
         //CLICKEVENT OF A CHAMPION IN THE LIST
         let bioChamp = document.querySelectorAll(".champ");
         for (let champ of bioChamp) {
-            console
             champ.addEventListener("click", function () {
                 let champName = champ.querySelector("p").innerHTML;
                 fetch(`http://ddragon.leagueoflegends.com/cdn/11.24.1/data/en_US/champion/${champName}.json`)
@@ -66,9 +63,6 @@ const championApp = {
                     .then(data => {
                         console.log(data.data[champName].id);
                         document.querySelector(".backgroundImg").style.backgroundImage = `url(http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${data.data[champName].id}_0.jpg)`;
-
-
-
                         console.log(data);
                         let bio = document.querySelector(".bio");
                         bio.innerHTML = '';
@@ -134,7 +128,7 @@ const championApp = {
                         </div>
                         </article>`;
 
-                        bio.insertAdjacentHTML("beforeend", html); //I LOVE YOU
+                        bio.insertAdjacentHTML("beforeend", html);
                         let slides = document.querySelectorAll(".slide");
                         for (let slide of slides) {
                             slide.addEventListener("click", function () {

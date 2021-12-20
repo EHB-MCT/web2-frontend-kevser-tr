@@ -1,11 +1,11 @@
 @font-face {
     font-family: LeagueFont;
-    src: url(sources/font/BeaufortforLOL-Bold.woff.ttf);
+    src: url(./font/BeaufortforLOL-Bold.woff.ttf);
 }
 
 @font-face {
     font-family: LeagueText;
-    src: url(sources/font/msjh_0.ttf);
+    src: url(./font/msjh_0.ttf);
 }
 
 main {
@@ -15,7 +15,7 @@ main {
     display: flex;
     position: absolute;
     justify-content: space-between;
-    flex-wrap: wrap;
+
 
 }
 
@@ -123,8 +123,9 @@ main {
 }
 
 .bio {
-    width: 50%;
+    height: 336px;
     margin: auto;
+    margin-left: 36px;
     display: flex;
 }
 
@@ -135,7 +136,7 @@ main {
 /* https://www.foolishdeveloper.com/2021/09/3d-image-slider-with-carousel-using.html */
 #slider {
     position: absolute;
-    bottom: 5%;
+    top: 518px;
     width: 32%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -180,9 +181,9 @@ input[type=radio]:checked {
 .bio>div>p {
     position: absolute;
     left: 50%;
-    bottom: 12%;
+    bottom: 11%;
+    z-index: -5;
     font-family: LeagueFond;
-
     transform: translate(-50%, -50%);
     color: white;
     font-size: 20px;
@@ -274,7 +275,7 @@ input[type=radio]:checked {
 }
 
 .backgroundImg {
-    width: 100vw;
+
     height: 100vh;
     background-size: cover;
     opacity: 0.1;

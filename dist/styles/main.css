@@ -1,11 +1,11 @@
 @font-face {
     font-family: LeagueFont;
-    src: url(sources/font/BeaufortforLOL-Bold.woff.ttf);
+    src: url(./font/BeaufortforLOL-Bold.woff.ttf);
 }
 
 @font-face {
     font-family: LeagueText;
-    src: url(sources/font/msjh_0.ttf);
+    src: url(./font/msjh_0.ttf);
 }
 
 

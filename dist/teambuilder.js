@@ -1,6 +1,7 @@
 // import Team from "./team";
 
 
+
 const teambuilderApp = {
     initFields() {
         this.getChampions();
@@ -22,7 +23,8 @@ const teambuilderApp = {
             championSection.insertAdjacentHTML("beforeend", `<div class="champ"><img src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champ}_0.jpg" alt"champ image><p>${champ}</p></div>`);
         }
         teambuilderApp.teamBuilderChampionClick();
-        teambuilderApp.teamBuilderCal();
+
+
 
     },
 
@@ -45,7 +47,8 @@ const teambuilderApp = {
                     }
                 }
                 teambuilderApp.teamBuilderChampionClick();
-                teambuilderApp.teamBuilderCal();
+
+
 
 
             })
@@ -72,7 +75,9 @@ const teambuilderApp = {
                         <article class="charh">
                         <p class="title">${data.data[champName].id}</p>
                         <h2 class="bioTitle">${data.data[champName].title}</h2>
+                       
                         <div class="stats">
+                        <p>${data.data[champName].tags}</p>
                         <p>Base stats</p>
                         <p>hp: ${data.data[champName].stats.hp}</p>
                         <p>attack damage: ${data.data[champName].stats.attackdamage}</p>
@@ -85,34 +90,57 @@ const teambuilderApp = {
                         </div>`;
                         display.insertAdjacentHTML("beforeend", html);
 
+                        let button = document.getElementById("button");
+                        button.addEventListener("click", function () {
+
+                            teambuilderApp.teamBuilderCal();
+                        })
+
                     })
             })
+
         }
 
 
     },
     async teamBuilderCal() {
-
         fetch('team.json')
             .then(response => {
                 return response.json();
             })
             .then(obj => {
-                let ADdamage = obj.team.AD
-                let APdamage = obj.team.AP
-                let members = obj.team.teammembers
+                let ADdamage = obj.team.AD;
+                let APdamage = obj.team.AP;
+                let members = obj.team.teammembers;
                 console.log(ADdamage, APdamage, members);
+                fetch('http://ddragon.leagueoflegends.com/cdn/11.24.1/data/en_US/champion.json')
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log(data);
+                        for (let champ in data) {
+                            console.log(champ)
+                            let roleChamp = champ.querySelector("p").innerHTML;
+                            fetch(`http://ddragon.leagueoflegends.com/cdn/11.24.1/data/en_US/champion/${roleChamp}.json`)
+                                .then(response => response.json())
+                                .then(data => {
+                                    console.log(data.data[roleChamp].tags)
+                                    console.log(data);
+                                })
+                        }
+                    })
+
+
+
+
             })
 
-        let champions = await this.getChampions();
-        for (let champ in champions.data) {
-            console.log(champ);
-            let ADdamage = champ[1].stats;
-            console.log(ADdamage)
-        }
     }
 
-
-
 }
+
+
+
+
 teambuilderApp.initFields();

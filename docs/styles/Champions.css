@@ -10,19 +10,21 @@
 
 main {
     margin-left: 119px;
-    z-index: 1;
-    padding: 50px 0;
-    display: flex;
     position: absolute;
-    justify-content: space-between;
-
-
+    z-index: 1;
 }
 
-.options>h1 {
+.builder {
+    display: flex;
+}
+
+.titleCard {
+    padding: 50px 0 0 0;
+}
+
+.titleCard>h1 {
     font-family: LeagueFont;
     font-size: 50px;
-
     color: #C8AA6E;
 }
 
@@ -77,12 +79,14 @@ main {
     height: 550px;
 }
 
-.champions::-webkit-scrollbar {
+.champions::-webkit-scrollbar,
+.ablityDescription::-webkit-scrollbar {
     background-color: #011525;
     width: 0.1em;
 }
 
-.champions::-webkit-scrollbar-thumb {
+.champions::-webkit-scrollbar-thumb,
+.ablityDescription::-webkit-scrollbar-thumb {
     background-color: #C8AA6E;
 }
 
@@ -123,20 +127,20 @@ main {
 }
 
 .bio {
-    height: 336px;
     margin: auto;
-    margin-left: 36px;
+    width: 45%;
     display: flex;
 }
 
 .bio>div {
     position: relative;
+    margin: auto;
 }
 
 /* https://www.foolishdeveloper.com/2021/09/3d-image-slider-with-carousel-using.html */
 #slider {
     position: absolute;
-    top: 518px;
+    bottom: 5%;
     width: 32%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -280,4 +284,9 @@ input[type=radio]:checked {
     background-size: cover;
     opacity: 0.1;
     z-index: -999;
+}
+
+.ablityDescription {
+    height: 100px;
+    overflow-y: scroll;
 }

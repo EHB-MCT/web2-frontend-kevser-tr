@@ -8,19 +8,13 @@
     src: url(./font/msjh_0.ttf);
 }
 
-body {
-    width: 100%;
-}
 
-.display {
-    display: flex;
-    padding: 33px 15px;
-}
+
 
 .generate {
-    height: 409px;
-    padding-left: 34px;
     margin: auto;
+    display: flex;
+
 }
 
 .bio {
@@ -61,4 +55,154 @@ button {
     font-family: 'LeagueFont';
     background-color: #031625;
     padding: 10px 10px;
+}
+
+
+@font-face {
+    font-family: LeagueFont;
+    src: url(./font/BeaufortforLOL-Bold.woff.ttf);
+}
+
+@font-face {
+    font-family: LeagueText;
+    src: url(./font/msjh_0.ttf);
+}
+
+main {
+    margin-left: 119px;
+}
+
+.builder {
+    display: flex;
+}
+
+.titleCard {
+    padding: 50px 0 0 0;
+}
+
+.titleCard>h1 {
+    font-family: LeagueFont;
+    font-size: 50px;
+    color: #C8AA6E;
+}
+
+.search {
+    width: 100%;
+    font-family: LeagueText;
+    padding: 10px 0;
+    color: #F1F1E6;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 15px;
+}
+
+.roles {
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    display: flex;
+    width: 95%;
+}
+
+.cat {
+    width: 100px;
+    text-align: -webkit-center;
+    padding: 30px 0 20px 0;
+}
+
+.cat>img {
+    width: 40%;
+    padding: 0 10px;
+
+}
+
+.cat>h1 {
+    font-family: LeagueFont;
+    color: #C8AA6E;
+}
+
+.catActive {
+    box-shadow: inset 0 -5px 0 #C8AA6E;
+    margin-bottom: 10px;
+}
+
+.champions,
+.options {
+    width: 700px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.champions {
+    overflow-y: scroll;
+    height: 550px;
+}
+
+.champions::-webkit-scrollbar {
+    background-color: #011525;
+    width: 0.1em;
+}
+
+.champions::-webkit-scrollbar-thumb {
+    background-color: #C8AA6E;
+}
+
+.champions .champ {
+    position: relative;
+    transition: all 0.5s;
+    width: 150px;
+    margin: 10px;
+}
+
+.champions .champ img {
+    width: 100%;
+    transition: all 0.5s;
+}
+
+.champions .champ p {
+    position: absolute;
+    opacity: 0;
+    top: 75%;
+    transition: all 0.5s;
+    background-color: #031625;
+    padding: 10px 30px;
+    color: white;
+    font-family: 'LeagueFont';
+    font-size: 15px;
+    border: 2px solid #C8AA6E;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.champions .champ:hover img+p {
+    opacity: 1;
+}
+
+.champions .champ:hover {
+    box-shadow: 0 0 0 2px #C8AA6E;
+    transform: scale(0.99);
+}
+
+.flex {
+    display: flex;
+
+}
+
+.teammember>img {
+    width: 60%;
+
+}
+
+.teammember>p {
+    font-family: 'LeagueFont';
+    color: #C8AA6E;
+    font-size: 20px;
+    padding: 10px 0;
+}
+
+.team {
+    font-family: 'LeagueFont';
+    color: #C8AA6E;
+    font-size: 30px;
+    height: 100vh;
+    padding: 48px 0;
 }

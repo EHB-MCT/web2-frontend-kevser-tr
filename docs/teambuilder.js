@@ -65,11 +65,11 @@ const teambuilderApp = {
                 fetch(`http://ddragon.leagueoflegends.com/cdn/11.24.1/data/en_US/champion/${champName}.json`)
                     .then(response => response.json())
                     .then(data => {
-                        console.log(data.data[champName].id)
-                        console.log(data);
+                        console.log("clicked champion is: " + data.data[champName].id)
+
                         let display = document.querySelector(".generate")
                         display.innerHTML = "";
-                        let html = `<div class="display">
+                        let html = `
                         <img class="generatePic" src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${data.data[champName].id}_0.jpg" alt="generatePic">
                         
                         <article class="charh">
@@ -83,17 +83,18 @@ const teambuilderApp = {
                         <p>attack damage: ${data.data[champName].stats.attackdamage}</p>
                         <p>magic damage: ${data.data[champName].stats.mp}</p>
                         <p>movement speed: ${data.data[champName].stats.movespeed}</p>
+                       
+                        <a href="#down"><button id="button">Generate Team</button></a>
                         </div>
-                        <button id="button">Genearate Team</button>
                         </article>
                
-                        </div>`;
+                        `;
                         display.insertAdjacentHTML("beforeend", html);
 
                         let button = document.getElementById("button");
                         button.addEventListener("click", function () {
 
-                            teambuilderApp.teamBuilderCal();
+                            teambuilderApp.teamBuilderCal(champName, data.data[champName].tags);
                         })
 
                     })
@@ -103,32 +104,74 @@ const teambuilderApp = {
 
 
     },
-    async teamBuilderCal() {
-        const usedTagged = [];
-        usedTagged += champ.id
-        for (champ in x)
-        fetch('team.json')
-            .then(response => {
-                return response.json();
-            })
-            .then(obj => {
-                let ADdamage = obj.team.AD;
-                let APdamage = obj.team.AP;
-                let members = obj.team.teammembers;
-                console.log(ADdamage, APdamage, members);
-                fetch('http://ddragon.leagueoflegends.com/cdn/11.24.1/data/en_US/champion.json')
-                    .then(response => {
-                        return response.json();
-                    })
-                    .then(data => {
-                        console.log(data);
+    async teamBuilderCal(champName, tags) {
 
-                    })
+        //Fetching api data
+        let champions = await this.getChampions();
+
+        //When creating a team you alwways have to make sure not more than 1 champion has the same laning position. (you don't wanna end up with 2 mid laners) 
+        const usedTags = [];
+
+        //5 chosen Champions will be pushed in this array which will make a suggested team (This can/will be used later)
+        const CreatedTeam = [];
+
+        //To access some of the API Data, you have to specify it with the champions name which is not efficient when using Math.number. That is why we are making a new array to make it more easy
+        const AllChamps = [];
+        for (let champTag in champions.data) {
+            AllChamps.push(champTag);
+        }
+
+        //Adds the champtag (position) to the array
+        usedTags.push(tags[0]);
+
+        //Adds the championName to the array (to you team) 
+        CreatedTeam.push(champName);
+
+        //Loops over every champions; Takes one of them randomly; Controls if position is not used more than one time in the usedTags array
+        for (let i = 0; i < 157; i++) {
+
+            let randomNumber = Math.floor(Math.random() * 157);
+            let randomChamp = AllChamps[randomNumber]
+
+            let tags = champions.data[randomChamp].tags[0];
+
+            if (!usedTags.includes(tags) && tags != "Assassin") {
+                usedTags.push(tags);
+                CreatedTeam.push(randomChamp);
+            }
+        }
 
 
+        console.log(CreatedTeam);
+        let team = document.querySelector(".team")
+        team.innerHTML = "";
+        let html = `<div class="teams" id="down" >
+        <p class=""team>Team</p> 
+        <div class="flex">
+    
+        <div class ="teammember">
+        <p>${CreatedTeam[0]}</p>
+        <img src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${CreatedTeam[0]}_0.jpg">
+        
+        </div>
+        <div class ="teammember">
+        <p>${CreatedTeam[1]}</p>
+        <img src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${CreatedTeam[1]}_0.jpg">
+        </div>
+        <div class ="teammember">
+        <p>${CreatedTeam[2]}</p>
+        <img src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${CreatedTeam[2]}_0.jpg">
+        </div>  <div class ="teammember">
+        <p>${CreatedTeam[3]}</p>
+        <img src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${CreatedTeam[3]}_0.jpg">
+        </div>  <div class ="teammember">
+        <p>${CreatedTeam[4]}</p>
+        <img src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${CreatedTeam[4]}_0.jpg">
+        </div>
+        </div>
+        </div>`
+        team.insertAdjacentHTML("beforeend", html);
 
-
-            })
 
     }
 

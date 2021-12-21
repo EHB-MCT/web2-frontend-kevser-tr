@@ -7,7 +7,6 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/nav.css">
-    <link rel="stylesheet" href="./styles/Champions.css">
     <link rel="stylesheet" href="./styles/Teambuilder.css">
     <link rel="stylesheet" href="./styles/reset.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -58,45 +57,58 @@
     </header>
 
     <main>
-        <section class="options">
+
+        <div class="titleCard">
             <h1>TEAMBUILDER</h1>
             <div class="search">
                 <p>Choose your champion to generate the best
                     match-up for your champion</p>
             </div>
-            <section class="roles">
-                <div class="cat" id="Fighter">
-                    <img src="img/catergorie/Fighter_icon.png" alt="top icon">
-                    <h1>Fighter</h1>
-                </div>
-                <div class="cat" id="Mage">
-                    <img src="img/catergorie/Mage_icon.png" alt="mid icon">
-                    <h1>Mage</h1>
-                </div>
-                <div class="cat" id="Marksman">
-                    <img src="img/catergorie/Marksman_icon.png" alt="bot icon">
-                    <h1>Marksman</h1>
-                </div>
+        </div>
+
+        <div class="builder">
+
+            <section class="options">
+
+                <section class="roles">
+                    <div class="cat" id="Fighter">
+                        <img src="img/catergorie/Fighter_icon.png" alt="top icon">
+                        <h1>Fighter</h1>
+                    </div>
+                    <div class="cat" id="Mage">
+                        <img src="img/catergorie/Mage_icon.png" alt="mid icon">
+                        <h1>Mage</h1>
+                    </div>
+                    <div class="cat" id="Marksman">
+                        <img src="img/catergorie/Marksman_icon.png" alt="bot icon">
+                        <h1>Marksman</h1>
+                    </div>
 
 
 
-                <div class="cat" id="Support">
-                    <img src="img/catergorie/Support_icon.png" alt="jung icon">
-                    <h1>Support</h1>
-                </div>
+                    <div class="cat" id="Support">
+                        <img src="img/catergorie/Support_icon.png" alt="jung icon">
+                        <h1>Support</h1>
+                    </div>
 
-                <div class="cat" id="Tank">
-                    <img src="img/catergorie/Tank_icon.png" alt="jung icon">
-                    <h1>Tank</h1>
-                </div>
+                    <div class="cat" id="Tank">
+                        <img src="img/catergorie/Tank_icon.png" alt="jung icon">
+                        <h1>Tank</h1>
+                    </div>
+                </section>
+
+                <section class="champions">
+                </section>
+
             </section>
-            <section class="champions">
-            </section>
-            <section class="clicked_champion">
-            </section>
-        </section>
-        <section class="generate">
 
+            <section class="generate">
+
+            </section>
+        </div>
+
+        <section class="team" id="down">
+            
         </section>
     </main>
     <script type="module" src="teambuilder.js"></script>

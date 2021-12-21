@@ -104,6 +104,9 @@ const teambuilderApp = {
 
     },
     async teamBuilderCal() {
+        const usedTagged = [];
+        usedTagged += champ.id
+        for (champ in x)
         fetch('team.json')
             .then(response => {
                 return response.json();
@@ -119,16 +122,7 @@ const teambuilderApp = {
                     })
                     .then(data => {
                         console.log(data);
-                        for (let champ in data) {
-                            console.log(champ)
-                            let roleChamp = champ.querySelector("p").innerHTML;
-                            fetch(`http://ddragon.leagueoflegends.com/cdn/11.24.1/data/en_US/champion/${roleChamp}.json`)
-                                .then(response => response.json())
-                                .then(data => {
-                                    console.log(data.data[roleChamp].tags)
-                                    console.log(data);
-                                })
-                        }
+
                     })
 
 

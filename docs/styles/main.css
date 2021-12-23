@@ -138,7 +138,16 @@ input[type=radio]:checked {
 }
 
 
-
+.logoName {
+    position: absolute;
+    transform: translate(-50%, 40%);
+    font-family: LeagueFont;
+    color: #c8aa6e;
+    text-shadow: 4px 6px black;
+    top: 40%;
+    left: 50%;
+    font-size: 12vh
+}
 
 #slider label,
 #slider label img {

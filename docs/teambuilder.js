@@ -46,7 +46,9 @@ const teambuilderApp = {
                         }
                     }
                 }
+
                 teambuilderApp.teamBuilderChampionClick();
+
 
 
 
@@ -93,8 +95,16 @@ const teambuilderApp = {
 
                         let button = document.getElementById("button");
                         button.addEventListener("click", function () {
+                            let team = document.querySelector(".team")
+                            team.innerHTML = "";
+                            for (let i = 0; i <= 3; i++) {
 
-                            teambuilderApp.teamBuilderCal(champName, data.data[champName].tags);
+                                teambuilderApp.teamBuilderCal(champName, data.data[champName].tags);
+
+                            }
+
+
+
                         })
 
                     })
@@ -108,6 +118,10 @@ const teambuilderApp = {
 
         //Fetching api data
         let champions = await this.getChampions();
+
+        let attack = 0;
+        let magic = 0;
+        let defense = 0;
 
         //When creating a team you alwways have to make sure not more than 1 champion has the same laning position. (you don't wanna end up with 2 mid laners) 
         const usedTags = [];
@@ -136,39 +150,66 @@ const teambuilderApp = {
             let tags = champions.data[randomChamp].tags[0];
 
             if (!usedTags.includes(tags) && tags != "Assassin") {
+
                 usedTags.push(tags);
                 CreatedTeam.push(randomChamp);
+
+
+                attack += champions.data[randomChamp].info.attack;
+                magic += champions.data[randomChamp].info.magic;
+                defense += champions.data[randomChamp].info.defense;
+
             }
+
         }
+        console.log(attack);
+        console.log(magic);
+        console.log(defense);
+        attack = attack / 50 * 100;
+        magic = magic / 50 * 100;
+        defense = defense / 50 * 100;
+        let totalNumber = attack + magic + defense;
+        attack = attack / totalNumber * 100;
+        magic = magic / totalNumber * 100;
+        defense = defense / totalNumber * 100;
+        let team = document.querySelector(".team");
 
-
-        console.log(CreatedTeam);
-        let team = document.querySelector(".team")
-        team.innerHTML = "";
         let html = `<div class="teams" id="down" >
-        <p class=""team>Team</p> 
+        <label for="team"  class=""team>Teamname </label><br>
+  <input type="text" id="teamnme">
         <div class="flex">
     
         <div class ="teammember">
         <p>${CreatedTeam[0]}</p>
         <img src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${CreatedTeam[0]}_0.jpg">
-        
+      
         </div>
         <div class ="teammember">
         <p>${CreatedTeam[1]}</p>
         <img src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${CreatedTeam[1]}_0.jpg">
+
         </div>
         <div class ="teammember">
         <p>${CreatedTeam[2]}</p>
         <img src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${CreatedTeam[2]}_0.jpg">
-        </div>  <div class ="teammember">
+      
+        </div>  
+        <div class ="teammember">
         <p>${CreatedTeam[3]}</p>
         <img src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${CreatedTeam[3]}_0.jpg">
-        </div>  <div class ="teammember">
+      
+        </div> 
+        <div class ="teammember">
         <p>${CreatedTeam[4]}</p>
         <img src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${CreatedTeam[4]}_0.jpg">
         </div>
         </div>
+        <div class="teamBalance"> 
+            <div class="attack" style="width: ${attack}%"><p>${attack.toFixed(1)}%<br>Attack</p></div>
+            <div class="magic" style="width: ${magic}%"><p>${magic.toFixed(1)}%<br>Magic</p></div>
+            <div class="defense" style="width: ${defense}%"><p>${defense.toFixed(1)}%<br>Defense</p></div>
+        </div>
+        <button id="save">SAVE</button>
         </div>`
         team.insertAdjacentHTML("beforeend", html);
 

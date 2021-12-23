@@ -1,3 +1,14 @@
+@font-face {
+    font-family: LeagueFont;
+    src: url(./font/BeaufortforLOL-Bold.woff.ttf);
+}
+
+@font-face {
+    font-family: LeagueText;
+    src: url(./font/msjh_0.ttf);
+}
+
+
 body {
     background-color: #00101C;
 }
@@ -54,10 +65,10 @@ header {
 
 .hiddenName {
     position: absolute;
-    background-color: black;
-    padding: 5px 10px;
+    background-color:#00101C;
+    padding: 10px 10px;
     top: 50%;
-
+    font-family: 'LeagueFont';
     transform: translate(0%, -50%);
     right: -120%;
     visibility: hidden;

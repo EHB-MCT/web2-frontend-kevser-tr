@@ -95,15 +95,7 @@ const teambuilderApp = {
                         button.addEventListener("click", function () {
                             let team = document.querySelector(".team")
                             team.innerHTML = "";
-
                             teambuilderApp.teamBuilderCal(champName, data.data[champName].tags);
-
-
-
-
-
-
-
 
                         })
 
@@ -150,17 +142,11 @@ const teambuilderApp = {
             let tags = champions.data[randomChamp].tags[0];
 
             if (!usedTags.includes(tags) && tags != "Assassin") {
-
                 usedTags.push(tags);
                 CreatedTeam.push(randomChamp);
-
-
                 attack += champions.data[randomChamp].info.attack;
                 magic += champions.data[randomChamp].info.magic;
                 defense += champions.data[randomChamp].info.defense;
-
-
-
 
             }
 
@@ -171,45 +157,6 @@ const teambuilderApp = {
             attack = attack / totalNumber * 100;
             magic = magic / totalNumber * 100;
             defense = defense / totalNumber * 100;
-            let myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-            let data = JSON.stringify({
-                "attack": attack,
-                "magic": magic,
-                "defense": defense,
-                "members": [{
-                        "name": CreatedTeam[0],
-                        "photo": "https://www.grandturkishbazaar.com/wp-content/uploads/2020/03/yaprak-sarma-stuffed-grape-leaves-5-500x500.jpg"
-                    },
-                    {
-                        "name": CreatedTeam[1],
-                        "photo": "https://www.grandturkishbazaar.com/wp-content/uploads/2020/03/yaprak-sarma-stuffed-grape-leaves-5-500x500.jpg"
-                    },
-                    {
-                        "name": CreatedTeam[2],
-                        "photo": "https://www.grandturkishbazaar.com/wp-content/uploads/2020/03/yaprak-sarma-stuffed-grape-leaves-5-500x500.jpg"
-                    },
-                    {
-                        "name": "Sarma",
-                        "photo": "https://www.grandturkishbazaar.com/wp-content/uploads/2020/03/yaprak-sarma-stuffed-grape-leaves-5-500x500.jpg"
-                    }, {
-                        "name": "Sarma",
-                        "photo": "https://www.grandturkishbazaar.com/wp-content/uploads/2020/03/yaprak-sarma-stuffed-grape-leaves-5-500x500.jpg"
-                    }
-                ]
-            });
-
-            let requestOptions = {
-                method: 'POST',
-                headers: myHeaders,
-                body: data,
-                redirect: 'follow'
-            };
-
-            fetch("https://b3b3-2a02-a03f-67fb-4e00-7582-1eeb-6824-b475.ngrok.io/teams/create", requestOptions)
-                .then(response => response.text())
-                .then(result => console.log(result))
-                .catch(error => console.log('error', error))
 
         }
         let team = document.querySelector(".team");
@@ -249,47 +196,61 @@ const teambuilderApp = {
         </div>
         <button id="save">SAVE</button>
         </div>`
+
         team.insertAdjacentHTML("beforeend", html);
-        teambuilderApp.buttonData(CreatedTeam);
+        teambuilderApp.buttonData(attack, magic, defense, CreatedTeam);
     },
 
-    // async postData() {
+    async postData(attack, magic, defense, CreatedTeam) {
 
-    //     let myHeaders = new Headers();
-    //     myHeaders.append("Content-Type", "application/json");
-    //     let data = JSON.stringify({
-    //         "damage": 12,
-    //         "magic": 0,
-    //         "defense": 0,
-    //         "members": [{
-    //                 "name": "Köfte",
-    //                 "photo": "https://leblogdistanbul.b-cdn.net/wp-content/uploads/2014/12/kofte.jpg"
-    //             },
-    //             {
-    //                 "name": "Köfte",
-    //                 "photo": "https://leblogdistanbul.b-cdn.net/wp-content/uploads/2014/12/kofte.jpg"
-    //             }
-    //         ]
-    //     });
 
-    //     let requestOptions = {
-    //         method: 'POST',
-    //         headers: myHeaders,
-    //         body: data,
-    //         redirect: 'follow'
-    //     };
+    },
 
-    //     fetch("https://teambuilderlol.herokuapp.com/teams/create", requestOptions)
-    //         .then(response => response.text())
-    //         .then(result => console.log(result))
-    //         .catch(error => console.log('error', error));
-    // },
-
-    async buttonData() {
+    async buttonData(attack, magic, defense, CreatedTeam) {
 
         let button = document.getElementById("save");
         button.addEventListener("click", function () {
-            postData();
+
+
+
+            let myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            let data = JSON.stringify({
+                "attack": attack,
+                "magic": magic,
+                "defense": defense,
+                "members": [{
+                        "name": CreatedTeam[0],
+                        "photo": `http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${CreatedTeam[0]}_0.jpg`
+                    },
+                    {
+                        "name": CreatedTeam[1],
+                        "photo": `http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${CreatedTeam[1]}_0.jpg`
+                    }, {
+                        "name": CreatedTeam[2],
+                        "photo": `http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${CreatedTeam[2]}_0.jpg`
+                    }, {
+                        "name": CreatedTeam[3],
+                        "photo": `http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${CreatedTeam[3]}_0.jpg`
+                    }, {
+                        "name": CreatedTeam[5],
+                        "photo": `http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${CreatedTeam[5]}_0.jpg`
+                    }
+
+                ]
+            });
+
+            let requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: data,
+                redirect: 'follow'
+            };
+
+            fetch("https://teambuilderlol.herokuapp.com/teams/create", requestOptions)
+                .then(response => response.text())
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
 
             console.log("shoossss");
         })
@@ -300,6 +261,7 @@ const teambuilderApp = {
 
 
     },
+
 }
 
 teambuilderApp.initFields();

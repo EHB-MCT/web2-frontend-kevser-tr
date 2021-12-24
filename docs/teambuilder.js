@@ -206,7 +206,7 @@ const teambuilderApp = {
                 redirect: 'follow'
             };
 
-            fetch("https://teambuilderlol.herokuapp.com/teams/create", requestOptions)
+            fetch("https://b3b3-2a02-a03f-67fb-4e00-7582-1eeb-6824-b475.ngrok.io/teams/create", requestOptions)
                 .then(response => response.text())
                 .then(result => console.log(result))
                 .catch(error => console.log('error', error))
